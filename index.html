@@ -1,0 +1,270 @@
+<!DOCTYPE html> 
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nlan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: linear-gradient(to bottom, #291a38, #0d001f);
+      color: white;
+    }
+    video#bg-video {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.1;
+      z-index: -1;
+    }
+    .panel {
+      width: 90%;
+      max-width: 1200px;
+      margin: 40px auto;
+      background: linear-gradient(to bottom,#12091a, #250f36, #38095e,#502375,#8550b1,#502375,#250f36,#250f36);
+      border-radius: 15px;
+      box-shadow: 0 0 30px #8850b3;
+      padding: 20px;
+      position: relative;
+    }
+    h1 {
+      text-align: center;
+      color: #fff;
+      margin-bottom: 29px;
+      text-shadow: 0 0 25px #ffffff;
+    }
+    .tabs {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 40px;
+    }
+    .tab {
+      padding: 10px 20px;
+      cursor: pointer;
+      background: linear-gradient(to bottom#522c6e,#402555,#250f36);
+      border-radius: 29px;
+      transition: 0.5s;
+      font-size: 13px;
+    }
+    .tab.active {
+      background:linear-gradient(to bottom, #b789da,#936bb1,#733f9b,#522c6e,#402555,#250f36);
+      box-shadow: 0 0 36px #ffd2ff;
+    }
+    .content {
+      display: none;
+    }
+    .content.active {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 20px;
+    }
+    .feature {
+      background: linear-gradient(45deg,#3a0b61, #5b218a, #8e40ce,#dcb4fc,#6113a1);
+      border-radius: 18px;
+      padding: 22px;
+      text-align: center;
+      cursor: pointer;
+      transition: 0.5s;
+      position: relative;
+      font-size: 16px;
+    }
+    .feature:hover {
+      background: linear-gradient(45deg, #632297, #a860e2,#f5eaff,#8432c7);
+      box-shadow: 0 0 35px #f6c6ff;
+    }
+    .feature.active {
+      background: linear-gradient(45deg, #12350b, #2a912a,#d4ffd7,#31bd2c);
+      box-shadow: 0 0 40px #00ff73;
+    }
+    .hud {
+      margin-top: 30px;
+      padding: 10px;
+      border-radius: 10px;
+      background: linear-gradient(45deg, #240d36,#3f195e,#52227a);
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      font-size: 14px;
+    }
+    .logs {
+      margin-top: 20px;
+      padding: 10px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 10px;
+      max-height: 120px;
+      overflow-y: auto;
+      font-size: 13px;
+    }
+    .load-button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 15px;
+      font-size: 18px;
+      border-radius: 10px;
+      background: linear-gradient(45deg, #3a0b61,#f0dcff, #b274e4,#a567d8,#6113a1);
+      color: white;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 0 32px #e282ff;
+      transition: 0.3s;
+    }
+    .load-button:hover {
+      background: linear-gradient(45deg, #714099,#f0ddff, #9461bd,#f0ddff,#9863c4);
+    }
+    #loading {
+      display: none;
+      text-align: center;
+      margin-top: 10px;
+    }
+    .scroll-text {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: linear-gradient(45deg,#e8c9ff,#a167d1, #6d2ca1, #43255c,#401c5e,#1e0830);
+      color: white;
+      font-size: 14px;
+      padding: 6px 0;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    .scroll-text span {
+      display: inline-block;
+      animation: scroll-left 10s linear infinite;
+      padding-left: 100%;
+    }
+    @keyframes scroll-left {
+      0% {transform: translateX(0);}
+      100% {transform: translateX(-100%);}
+    }
+  </style>
+</head>
+<body>
+
+<video autoplay muted loop id="bg-video">
+  <source src="gojo.mp4" type="video/mp4">
+</video>
+
+<div class="panel">
+   <img src="https://i.imgur.com/C5IzBcD.png" alt="Logo Avatar" style="width: 100px; height: 100px; border-radius: 70%; display: block; margin: 0 auto 0px; box-shadow: 0 0 15px #ffffff;">
+  <h1>🌀 PANEL MOD 🌀</h1>
+
+  <div class="tabs">
+    <div class="tab active" onclick="switchTab(0)">Aim Settings </div>
+    <div class="tab" onclick="switchTab(1)">SPEED Settings</div>
+    <div class="tab" onclick="switchTab(2)">ESP Options</div>
+    <div class="tab" onclick="switchTab(3)">Thông Tin</div>
+   
+  </div>
+
+  <div class="content active">
+    <div class="feature" onclick="toggleFeature(this, 'AIMLOCK')">☁ AIMLOCK</div>
+    <div class="feature" onclick="toggleFeature(this, 'AIMBOT')">AIMBOT ☁ </div>
+    <div class="feature" onclick="toggleFeature(this, 'AIM NECK')">☁ AIM NECK</div>
+    <div class="feature" onclick="toggleFeature(this, 'AIM DRAG')">AIM DRAG ☁ </div>
+     <div class="feature" onclick="toggleFeature(this, 'AIM BODY')">☁ AIM BODY</div>
+    <div class="feature" onclick="toggleFeature(this, 'AIM HEA')">AIM HEAD  ☁ </div>
+ <div class="feature" onclick="toggleFeature(this, 'No Reload')">☁  No Reload</div>
+
+    <div class="feature" onclick="toggleFeature(this, 'No Recoil')">No Recoil ☁ </div>
+ 
+  </div>
+
+  <div class="content">
+   
+    <div class="feature" onclick="toggleFeature(this, 'SPEED')">☁  SPEED</div>
+    <div class="feature" onclick="toggleFeature(this, 'SPEED X2')">SPEED X2 ☁ </div>
+  <div class="feature" onclick="toggleFeature(this, 'SPEED X4')">☁  SPEED X4</div>
+    <div class="feature" onclick="toggleFeature(this, 'SPEED X8')">SPEED X8 ☁ </div>
+  <div class="feature" onclick="toggleFeature(this, 'SPEED X10')">☁  SPEED X10</div>
+    <div class="feature" onclick="toggleFeature(this, 'SPEED X100')">SPEED X100 ☁ </div>
+ 
+  </div>
+
+  <div class="content">
+   <div class="feature" onclick="toggleFeature(this, 'ESP Master')">☁ ESP Master </div>
+    <div class="feature" onclick="toggleFeature(this, 'ESP Line')"> ESP Line ☁</div>
+    <div class="feature" onclick="toggleFeature(this, 'ESP Box')">☁ ESP Box </div>
+    <div class="feature" onclick="toggleFeature(this, 'ESP Health')"> ESP Health ☁</div>
+    <div class="feature" onclick="toggleFeature(this, 'ESP Skeleton')">☁ ESP Skeleton </div>
+     <div class="feature" onclick="toggleFeature(this, 'ESP Weapon')"> ESP Weapon ☁</div>
+    <div class="feature" onclick="toggleFeature(this, 'ESP Team')">☁ ESP Team </div>
+    <div class="feature" onclick="toggleFeature(this, 'ESP Distance')"> ESP Distance ☁</div>
+   
+ 
+ 
+ 
+  </div>
+
+  <div class="content">
+    <div class="feature">👤 Admin: <strong>NLan </strong></div>
+    <div class="feature">⚜ Panel Version  : VIP</div>
+    <div class="feature">⚙️ Update: 23/07/2025</div>
+    <div class="feature">Zalo Me : 0971553617  </div>
+  </div>
+
+  <div class="hud">
+    <div>FPS: <span id="fps">0</span></div>
+    <div>Ping: <span id="ping">--</span>ms</div>
+    <div>RAM: <span id="ram">--</span>%</div>
+    <div>CPU: <span id="cpu">--</span>%</div>
+  </div>
+
+  <div class="logs" id="logs"></div>
+
+  <button class="load-button" onclick="showLoading()"> Kích Hoạt Chức Năng</button>
+  <div id="loading">⏳ Đang xử lý...</div>
+</div>
+
+<div class="scroll-text">
+  <span>🔥 Chào Mừng Bạn Đến Với Menu Nlan | Bản quyền © 2025 | Đồ Chơi Full Đỏ - Aimlock Liên Hệ Ngay Zalo : 0971553617 Hoặc Facebook : Ng Lann (nlan) Để Được Nlan Hỗ Trợ Tất Cả Nhé Cam Kết An Toàn Uy Tín Full Đỏ 🔥</span>
+</div>
+
+<audio id="clickSound" src="https://www.soundjay.com/buttons/sounds/button-3.mp3"></audio>
+
+<script>
+  let tabs = document.querySelectorAll(".tab");
+  let contents = document.querySelectorAll(".content");
+
+  function switchTab(index) {
+    tabs.forEach((tab, i) => {
+      tab.classList.toggle("active", i === index);
+      contents[i].classList.toggle("active", i === index);
+    });
+  }
+
+  function toggleFeature(el, name) {
+    el.classList.toggle("active");
+    let log = document.getElementById("logs");
+    let sound = document.getElementById("clickSound");
+    sound.play();
+    let status = el.classList.contains("active") ? "✅ Bật" : "❌ Tắt";
+    let time = new Date().toLocaleTimeString();
+    log.innerHTML = `<div>[${time}] ${status} chức năng: ${name}</div>` + log.innerHTML;
+  }
+
+  function showLoading() {
+    document.getElementById("loading").style.display = "block";
+    setTimeout(() => {
+      document.getElementById("loading").innerText = "✅Đã Kích Hoạt Các Chức Năng Được Chọn!";
+    }, 2000);
+  }
+
+  // Giả lập chỉ số HUD
+  setInterval(() => {
+    document.getElementById("fps").innerText = Math.floor(Math.random() * 30 + 60);
+    document.getElementById("ping").innerText = Math.floor(Math.random() * 50 + 20);
+    document.getElementById("ram").innerText = Math.floor(Math.random() * 40 + 40);
+    document.getElementById("cpu").innerText = Math.floor(Math.random() * 30 + 30);
+  }, 1500);
+</script>
+
+</body>
+</html>
